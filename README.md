@@ -80,9 +80,27 @@ PostgreSQL, Airflow Webserver, and Airflow Scheduler running in a healthy state:
 Complete test suite execution inside the Airflow Docker container:
 ![Test Results](screenshots/test_results.png)
 
-### 3. Apache Airflow DAG Execution
-Successful run of the `ecommerce_etl_pipeline` DAG with successful tasks:
-![Airflow DAG Run](screenshots/airflow_dag_run.png)
+### 3. Apache Airflow Live UI & Orchestration
+
+#### A. Airflow Task Grid View (`task_id=generate_sample_data`)
+Live Airflow Grid interface (`http://localhost:8080/dags/ecommerce_etl_pipeline/grid?task_id=generate_sample_data`) showing successful task runs, median execution duration, and operator parameters:
+![Airflow Grid - Task generate_sample_data](screenshots/airflow_grid_task_generate_sample_data.png)
+
+#### B. Airflow Task Grid View (`task_id=validate_transform_load`)
+Downstream ETL validation and loading task execution details and duration:
+![Airflow Grid - Task validate_transform_load](screenshots/airflow_grid_task_validate_transform_load.png)
+
+#### C. Airflow DAG Dependency Graph View
+Full directed acyclic graph layout showing task dependencies and success states:
+![Airflow DAG Graph View](screenshots/airflow_dag_graph_view.png)
+
+#### D. Airflow Gantt Execution Timeline
+Task execution duration, queuing latency, and start/finish timestamps:
+![Airflow DAG Gantt View](screenshots/airflow_dag_gantt_view.png)
+
+#### E. Airflow Home DAG Catalog
+Dashboard view confirming DAG activation state, scheduled runs, and historical success runs:
+![Airflow Home DAGs List](screenshots/airflow_home_dags_list.png)
 
 ### 4. PostgreSQL Live Analytics Queries
 Direct `psql` query output from the `analytics` SQL views:
@@ -113,8 +131,15 @@ ecommerce-etl-analytics/
 │   └── processed/                   # Staging directory for processed assets
 ├── docs/
 │   └── architecture.md              # Technical design documentation
+├── scripts/
+│   └── capture_airflow_screenshots.py # Automation script for live UI screenshots
 ├── screenshots/                     # Verified execution screenshots
-│   ├── airflow_dag_run.png
+│   ├── airflow_grid_task_generate_sample_data.png
+│   ├── airflow_grid_task_validate_transform_load.png
+│   ├── airflow_dag_graph_view.png
+│   ├── airflow_dag_gantt_view.png
+│   ├── airflow_dag_grid_view.png
+│   ├── airflow_home_dags_list.png
 │   ├── cli_output_example.png
 │   ├── docker_services_status.png
 │   ├── pipeline_architecture.png
