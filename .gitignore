@@ -12,3 +12,6 @@ data/processed/*
 .DS_Store
 .idea/
 .vscode/
+*.exe
+*.log
+cloudflared/
